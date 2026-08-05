@@ -29,24 +29,25 @@ The editor features full SD card support, direct binding to uLisp symbols, full 
 
 * HOME --- move cursor to start of line
 * CTRL-e / END --- move cursor to end of line
-* CTRL-UP --- move cursor to beginning of buffer
+* CTRL-UP / ALT-UP --- move cursor to beginning of buffer
+* CTRL-DOWN / ALT-DOWN --- **NEW** move cursor to end of buffer
 * SHIFT-UP/SHIFT-DOWN --- move one page up or down
 
-* CTRL-h / ALT-h --- **NEW** invoke help system. Press a key, then ENTER, then a list with all names within uLisp starting with the character you provided is shown read-only in the editor window. If there are no names starting with that character, "No entry" is shown. Otherwise, place the cursor on a list entry you want to read the help text for and press ENTER, then the built-in help text for that entry is shown read-only. If there is no help text available, "No doc" is shown. You may use ALT-c to copy a line (e.g. the function prototype). To return to your edit buffer press CTRL-h or ALT-h again (or F4, F6 or F7).
+* CTRL-h / ALT-h --- invoke help system. Press a key, then ENTER, then a list with all names within uLisp starting with the character you provided is shown read-only in the editor window. If there are no names starting with that character, "No entry" is shown. Otherwise, place the cursor on a list entry you want to read the help text for and press ENTER, then the built-in help text for that entry is shown read-only. If there is no help text available, "No doc" is shown. You may use ALT-c to copy a line (e.g. the function prototype). To return to your edit buffer press CTRL-h or ALT-h again (or F4, F6 or F7).
 
-* CTRL-r / ALT-r --- **NEW** execute code of current line in editor immediately. If a selection exists, the selected line range will be enclosed in "(progn [...])" behind the scenes and then be executed immediately. See also "F5".
-* CTRL-s / ALT-s --- **NEW** search downwards for provided string in buffer starting at cursor position. When found, the cursor jumps to the related text position.
-* ALT-Space --- **NEW** send line or marked region via serial RX/TX and receive incoming answers. This utilizes the port at the left side of the PicoCalc via software serial (SerialPIO) and is tied to GP2 (PicoCalc TX) and GP3 (PicoCalc RX). The use of software serial prevents interference with the PicoCalc's USB chip that is tied in parallel to UART0 further down the port. The software serial has a baud speed limit, probably somewhere below 38400. At default the serial speed is set to 9600 baud, but you may adjust the global variable `se:baud` to try a higher value (use numbers like in `with-serial`). Any response incoming to the serial interface is fed into the read-only buffer of the editor *after* your code has been sent. To terminate receiving press any key slightly longer until the cursor reappears. To leave the read-only buffer and return to your code press ALT-Space again or F4, F6 or F7.
+* CTRL-r / ALT-r --- execute code of current line in editor immediately. If a selection exists, the selected line range will be enclosed in "(progn [...])" behind the scenes and then be executed immediately. See also "F5".
+* CTRL-s / ALT-s --- search downwards for provided string in buffer starting at cursor position. When found, the cursor jumps to the related text position.
+* ALT-Space --- send line or marked region via serial RX/TX and receive incoming answers. This utilizes the port at the left side of the PicoCalc via software serial (SerialPIO) and is tied to GP2 (PicoCalc TX) and GP3 (PicoCalc RX). The use of software serial prevents interference with the PicoCalc's USB chip that is tied in parallel to UART0 further down the port. The software serial has a baud speed limit, probably somewhere below 38400. At default the serial speed is set to 9600 baud, but you may adjust the global variable `se:baud` to try a higher value (use numbers like in `with-serial`). Any response incoming to the serial interface is fed into the read-only buffer of the editor *after* your code has been sent. To terminate receiving press any key slightly longer until the cursor reappears. To leave the read-only buffer and return to your code press ALT-Space again or F4, F6 or F7.
 
-* CTRL-i / ALT-i --- **NEW**  set start line of selection for copy/paste/delete/execute
-* CTRL-o / ALT-o --- **NEW**  set end line of selection for copy/paste/delete/execute
-* CTRL-p / ALT-p --- **NEW**  unselect selected line range
+* CTRL-i / ALT-i --- set start line of selection for copy/paste/delete/execute
+* CTRL-o / ALT-o --- set end line of selection for copy/paste/delete/execute
+* CTRL-p / ALT-p --- unselect selected line range
 
 * F1 --- toggle bracket matching on/off
 * F2 --- check whether bracket under the cursor has a matching bracket in the buffer. If so, both are temporarily highlighted. (Use when continuous bracket matching is off.)
 * F3 --- load text from SD card into buffer, discarding the present one
 * F4 --- load the code of a symbol of your choice *read-only* into the editor. You may scroll through it and copy lines, but editing is blocked. To return to your text buffer press F4 again (or F6 or F7).
-* F5 --- **NEW** either bind contents of the text buffer to a symbol of your choice and quit editor *or* run code (content of text buffer) immediately. To achieve the latter just press ENTER when the input line requests "Symbol name:" (i.e. don't provide a name). See also "CTRL-r/ALT-r".
+* F5 --- either bind contents of the text buffer to a symbol of your choice and quit editor *or* run code (content of text buffer) immediately. To achieve the latter just press ENTER when the input line requests "Symbol name:" (i.e. don't provide a name). See also "CTRL-r/ALT-r".
 * F6 --- show directory of SD card in *read-only* buffer. To return to your text buffer press F6 again (or F4 or F7).
 * F7 --- load text from SD card *read-only* into the editor. You may scroll through it and copy lines, but editing is blocked. To return to your text buffer press F7 again (or F4 or F6).
 * F8 --- save current buffer to backup file "lisp/BACKUP.CL" (overwriting old backup file). This is intended as a quick save function to prevent the worst case scenario of running out of battery before having saved your current work. It is recommended to use F8 at regular intervals. **Note:** The subdirectory "lisp" needs to exist beforehand, create it on the SD card before inserting it into PicoCalc.

@@ -22,7 +22,7 @@
 #define assemblerlist
 #define extensions        // Need this for PicoEdit
 #define PICOCALC          // Need this for GIF extension
-// #define ULISP_WIFI
+#define ULISP_WIFI
 
 // Includes
 
