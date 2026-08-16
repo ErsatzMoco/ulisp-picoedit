@@ -714,6 +714,8 @@ const char LispLibrary[] PROGMEM = R"lisplibrary(
 					(se:move-window t)
 				)
 			)
+			(setf se:curline (nth y se:buffer))
+			(setf se:scrpos (se:calc-scrpos se:txtpos))
 		)
 		#| (se:show-cursor) |#
 	)
